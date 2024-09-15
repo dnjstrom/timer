@@ -1,7 +1,10 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useEffect, useRef, useState } from 'react';
 import ButtonRow from '../components/ButtonRow';
 import clsx from 'clsx';
 import { ConfigProvider, Dropdown } from 'antd';
+import useLocalStorageState from 'use-local-storage-state';
+
+const forXTimes = (n: number) => Array.from({ length: n }, (_, i) => i);
 
 function Page({ id }: { id: number }) {
   return (
@@ -18,15 +21,35 @@ function Page({ id }: { id: number }) {
 function Tab({
   onClick,
   children,
-  active,
+  active = false,
+  shadow = false,
+  className,
 }: {
+  className?: string;
   children: ReactNode;
   onClick: () => void;
-  active: boolean;
+  active?: boolean;
+  shadow?: boolean;
 }) {
+  const ref = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (active && ref) {
+      ref.current?.scrollIntoView({});
+    }
+  }, [active]);
+
   return (
     <button
-      className={clsx('bg-slate-100 px-4 py-2 h-20', active && 'text-white !bg-[rgb(0,140,180)]')}
+      ref={ref}
+      style={{
+        boxShadow: shadow ? 'inset 0 4px 4px -4px rgba(0,0,0,.3)' : undefined,
+      }}
+      className={clsx(
+        'bg-slate-200 px-4 py-2 h-[20vw] w-[20vw] flex-shrink-0 text-xl',
+        active && 'text-black bg-white',
+        className,
+      )}
       onClick={onClick}
     >
       {children}
@@ -36,6 +59,9 @@ function Tab({
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState(0);
+  const [nrPages, setNrPages] = useLocalStorageState('number-of-pages', {
+    defaultValue: 1,
+  });
 
   return (
     <ConfigProvider
@@ -55,6 +81,7 @@ export default function App() {
                   key: 'clear-all',
                   onClick: () => {
                     localStorage.clear();
+                    setNrPages(1);
                     location.reload();
                   },
                   label: 'Rensa alla uppdrag',
@@ -68,52 +95,35 @@ export default function App() {
           </Dropdown>
         </div>
         <div>
-          {currentPage === 0 && <Page id={0}></Page>}
-          {currentPage === 1 && <Page id={1}></Page>}
-          {currentPage === 2 && <Page id={2}></Page>}
-          {currentPage === 3 && <Page id={3}></Page>}
-          {currentPage === 4 && <Page id={4}></Page>}
+          <Page id={currentPage}></Page>
         </div>
-        <div className="fixed left-0 right-0 bottom-0 grid grid-cols-5">
+        <div className="fixed left-0 right-0 bottom-0 flex bg-slate-50">
+          <div className="flex overflow-auto divide-x divide-slate-300">
+            {forXTimes(nrPages).map((i) => (
+              <Tab
+                key={i}
+                shadow={currentPage !== i}
+                active={currentPage === i}
+                onClick={() => {
+                  setCurrentPage(i);
+                }}
+              >
+                {i + 1}
+              </Tab>
+            ))}
+          </div>
+
           <Tab
-            active={currentPage === 0}
+            className="!bg-[rgb(0,140,180)] text-white"
             onClick={() => {
-              setCurrentPage(0);
+              setNrPages((prev) => {
+                const nextTotalPages = prev + 1;
+                setCurrentPage(nextTotalPages - 1);
+                return nextTotalPages;
+              });
             }}
           >
-            1
-          </Tab>
-          <Tab
-            active={currentPage === 1}
-            onClick={() => {
-              setCurrentPage(1);
-            }}
-          >
-            2
-          </Tab>
-          <Tab
-            active={currentPage === 2}
-            onClick={() => {
-              setCurrentPage(2);
-            }}
-          >
-            3
-          </Tab>
-          <Tab
-            active={currentPage === 3}
-            onClick={() => {
-              setCurrentPage(3);
-            }}
-          >
-            4
-          </Tab>
-          <Tab
-            active={currentPage === 4}
-            onClick={() => {
-              setCurrentPage(4);
-            }}
-          >
-            5
+            +
           </Tab>
         </div>
       </div>
