@@ -1,6 +1,6 @@
 {
-  "name": "Cats Realm",
-  "short_name": "Cats Realm",
+  "name": "Timer",
+  "short_name": "Timer",
   "description": "A simple progressive web app template using Next.js",
   "display": "standalone",
   "orientation": "portrait",
