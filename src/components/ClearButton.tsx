@@ -1,6 +1,6 @@
 import { Popconfirm } from 'antd';
 
-export const ClearButton = ({ onClick }: { onClick: () => void }) => {
+export default function ClearButton({ onClick }: { onClick: () => void }) {
   return (
     <Popconfirm title="Reset" onConfirm={onClick} icon={false} okText="Clear">
       <button type="button" className="bg-red-500 text-white px-4 py-2 rounded">
@@ -8,4 +8,4 @@ export const ClearButton = ({ onClick }: { onClick: () => void }) => {
       </button>
     </Popconfirm>
   );
-};
+}

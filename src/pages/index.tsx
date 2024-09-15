@@ -1,4 +1,4 @@
-import { ButtonRow } from './ButtonRow';
+import ButtonRow from '../components/ButtonRow';
 
 export default function main(): JSX.Element {
   return (

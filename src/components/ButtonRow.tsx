@@ -1,8 +1,8 @@
 import useLocalStorageState from 'use-local-storage-state';
-import { SetButton } from './SetButton';
-import { ClearButton } from './ClearButton';
+import SetButton from './SetButton';
+import ClearButton from './ClearButton';
 
-export const ButtonRow = ({ title }: { title: string }) => {
+export default function ButtonRow({ title }: { title: string }) {
   const [time, setTime] = useLocalStorageState<string>(title, {
     defaultValue: '',
   });
@@ -39,4 +39,4 @@ export const ButtonRow = ({ title }: { title: string }) => {
       )}
     </div>
   );
-};
+}
