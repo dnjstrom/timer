@@ -10,7 +10,7 @@ export default function ButtonRow({ id, title }: { id: string; title: string }) 
   const timeString = time?.match(/\d\d:\d\d/)?.[0] ?? '';
 
   return (
-    <div className="flex gap-4 items-center justify-between p-6">
+    <div className="flex gap-4 items-center justify-between p-6 py-6">
       <div className="mr-auto">{title}</div>
       <input
         type="time"
