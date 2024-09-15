@@ -1,7 +1,7 @@
 {
-  "name": "SSRS Timer",
+  "name": "Timer",
   "short_name": "Timer",
-  "description": "SSRS Timer",
+  "description": "Timer",
   "display": "standalone",
   "orientation": "portrait",
   "scope": "/timer",
@@ -10,12 +10,12 @@
   "theme_color": "#008cb4",
   "icons": [
     {
-      "src": "/timer/icons/icon-192x192.png",
+      "src": "/timer/icons/icon-maskable-192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "/timer/icons/icon-512x512.png",
+      "src": "/timer/icons/icon-maskable-512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     },
