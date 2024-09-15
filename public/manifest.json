@@ -1,13 +1,13 @@
 {
-  "name": "Timer",
+  "name": "SSRS Timer",
   "short_name": "Timer",
-  "description": "A simple progressive web app template using Next.js",
+  "description": "SSRS Timer",
   "display": "standalone",
   "orientation": "portrait",
-  "scope": "/",
-  "start_url": "/",
-  "background_color": "#ffffff",
-  "theme_color": "#F3EFE0",
+  "scope": "/timer",
+  "start_url": "/timer",
+  "background_color": "#008cb4",
+  "theme_color": "#008cb4",
   "icons": [
     {
       "src": "/icons/icon-192x192.png",
