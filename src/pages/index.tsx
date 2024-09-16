@@ -97,7 +97,7 @@ export default function App() {
         <div>
           <Page id={currentPage}></Page>
         </div>
-        <div className="fixed left-0 right-0 bottom-[env(safe-area-inset-bottom)] flex bg-slate-50">
+        <div className="fixed left-[env(safe-area-inset-left)] right-[env(safe-area-inset-right)] bottom-[env(safe-area-inset-bottom)] flex bg-slate-50">
           <div className="flex overflow-auto divide-x divide-slate-300">
             {forXTimes(nrPages).map((i) => (
               <Tab
