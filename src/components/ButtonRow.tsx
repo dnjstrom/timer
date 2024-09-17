@@ -32,7 +32,7 @@ export default function ButtonRow({ id, title }: { id: string; title: string }) 
         ></ClearButton>
       ) : (
         <SetButton
-          onTouchStart={() => {
+          onClick={() => {
             setTime(new Date().toString());
           }}
         ></SetButton>
