@@ -1,22 +1,9 @@
 import { ReactNode, useEffect, useRef, useState } from 'react';
-import ButtonRow from '../components/ButtonRow';
 import clsx from 'clsx';
 import { ConfigProvider, Dropdown } from 'antd';
 import useLocalStorageState from 'use-local-storage-state';
-
-const forXTimes = (n: number) => Array.from({ length: n }, (_, i) => i);
-
-function Page({ id }: { id: number }) {
-  return (
-    <div className="flex flex-col divide-y">
-      <ButtonRow id={`larm-${id}`} title="Larm"></ButtonRow>
-      <ButtonRow id={`departure-${id}`} title="Avgång hamn"></ButtonRow>
-      <ButtonRow id={`arrival-${id}`} title="Framme objekt"></ButtonRow>
-      <ButtonRow id={`finished-${id}`} title="Klar objekt"></ButtonRow>
-      <ButtonRow id={`return-${id}`} title="Åter hamn"></ButtonRow>
-    </div>
-  );
-}
+import { forXTimes } from '../utils/forXTimes';
+import { Page } from '../components/Page';
 
 function Tab({
   onClick,
@@ -46,7 +33,7 @@ function Tab({
         boxShadow: shadow ? 'inset 0 4px 4px -4px rgba(0,0,0,.3)' : undefined,
       }}
       className={clsx(
-        'bg-slate-200 px-4 py-2 h-[20vw] w-[20vw] flex-shrink-0 text-xl',
+        'bg-slate-200 px-4 py-2 h-[100px] w-[100px] flex-shrink-0 text-xl',
         active && 'text-black bg-white',
         className,
       )}
@@ -97,7 +84,7 @@ export default function App() {
         <div>
           <Page id={currentPage}></Page>
         </div>
-        <div className="fixed left-[env(safe-area-inset-left)] right-[env(safe-area-inset-right)] bottom-[env(safe-area-inset-bottom)] flex bg-slate-50">
+        <div className="fixed left-[env(safe-area-inset-left)] right-[env(safe-area-inset-right)] bottom-[env(safe-area-inset-bottom)] flex bg-slate-100">
           <div className="flex overflow-auto divide-x divide-slate-300">
             {forXTimes(nrPages).map((i) => (
               <Tab
