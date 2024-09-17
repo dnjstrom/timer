@@ -49,3 +49,8 @@ pre {
   font-weight: 400;
   line-height: 18.5714px;
 }
+
+.ant-btn-primary {
+  /* To avoid the popconfirm confirm button background turning transparent */
+  background: #fa1432;
+}
