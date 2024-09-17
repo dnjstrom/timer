@@ -19,7 +19,7 @@ function Page({ id }: { id: number }) {
 }
 
 function Tab({
-  onClick,
+  onTouchStart,
   children,
   active = false,
   shadow = false,
@@ -27,7 +27,7 @@ function Tab({
 }: {
   className?: string;
   children: ReactNode;
-  onClick: () => void;
+  onTouchStart: () => void;
   active?: boolean;
   shadow?: boolean;
 }) {
@@ -50,7 +50,7 @@ function Tab({
         active && 'text-black bg-white',
         className,
       )}
-      onClick={onClick}
+      onTouchStart={onTouchStart}
     >
       {children}
     </button>
@@ -104,7 +104,7 @@ export default function App() {
                 key={i}
                 shadow={currentPage !== i}
                 active={currentPage === i}
-                onClick={() => {
+                onTouchStart={() => {
                   setCurrentPage(i);
                 }}
               >
@@ -115,7 +115,7 @@ export default function App() {
 
           <Tab
             className="!bg-[rgb(0,140,180)] text-white"
-            onClick={() => {
+            onTouchStart={() => {
               setNrPages((prev) => {
                 const nextTotalPages = prev + 1;
                 setCurrentPage(nextTotalPages - 1);
