@@ -7,7 +7,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <meta name="viewport" content="viewport-fit=cover" />
-        <meta name="viewport" content="initial-scale=1, viewport-fit=cover" />
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover" />
         <link rel="manifest" href="manifest.json" />
       </Head>
       <Component {...pageProps} />;
